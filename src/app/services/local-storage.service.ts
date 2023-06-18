@@ -1,62 +1,21 @@
 import { Injectable } from '@angular/core';
-import { TaskList } from '../shared/models/list-task.model'
+import { TaskList } from '../shared/models/list-task.model';
+
 @Injectable({
   providedIn: 'root'
 })
 export class LocalStorageService {
+  private readonly localStorageKey = 'todoLists';
 
-  constructor() { }
-
-
-  getTasks() {
-    let tasks = JSON.parse(window.localStorage.getItem('tasks'));
-    if (tasks === null) {
-      tasks = [];
+  getLists(): TaskList[] | null {
+    const listsData = localStorage.getItem(this.localStorageKey);
+    if (listsData) {
+      return JSON.parse(listsData);
     }
-    return tasks;
+    return null;
   }
 
-  addTask(addItem: string) {
-    const tasksStored = window.localStorage.getItem('tasks');
-    let tasks = [];
-    if (tasksStored !== null) {
-      tasks = JSON.parse(tasksStored);
-    }
-    const newTask: TaskList = {
-      is_complete: false,
-      name: addItem,
-      id: tasks.length + 1
-    };
-
-    tasks.push(newTask);
-    window.localStorage.setItem('tasks', JSON.stringify(tasks));
+  setLists(lists: TaskList[]): void {
+    localStorage.setItem(this.localStorageKey, JSON.stringify(lists));
   }
-
-  updateTask(toggleTask, taskList) {
-    const taskToToggle = toggleTask;
-    const tasks = JSON.parse(window.localStorage.getItem('tasks'));
-    const saved = tasks.filter(item => {
-      taskList.filter(task => {
-        if (item.id === task.id) {
-          if (item.id === taskToToggle.id) {
-            item.done = taskToToggle.done;
-          }
-          item.order = task.order;
-          item.description = task.description;
-          item.id = task.id;
-        }
-      });
-      return item;
-    });
-    window.localStorage.setItem('tasks', JSON.stringify(saved));
-  }
-
-  deleteTask(deleteTask) {
-    const tasks = JSON.parse(window.localStorage.getItem('tasks'));
-    const saved = tasks.filter(item => {
-      return item.id !== deleteTask.id;
-    });
-    window.localStorage.setItem('tasks', JSON.stringify(saved));
-  }
-
 }

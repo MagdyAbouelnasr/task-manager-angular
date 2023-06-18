@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { ListService } from 'src/app/services/list-task-service.service';
-import { TaskList } from 'src/app/shared/models/list-task.model';
 import { FilterEnum } from 'src/app/shared/types/filter.enum';
 @Component({
   selector: 'app-lists-footer',

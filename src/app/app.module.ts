@@ -24,6 +24,16 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatInputModule} from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from './shared/components/confirmation-dialog/confirmation-dialog.component';
+
+import {
+  CdkDrag,
+  CdkDragHandle,
+  CdkDragPlaceholder,
+  CdkDropList,
+  DragDropModule,
+} from '@angular/cdk/drag-drop';
+import {NgFor} from '@angular/common';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +58,13 @@ import { ConfirmationDialogComponent } from './shared/components/confirmation-di
     MatFormFieldModule,
     MatPaginatorModule,
     MatInputModule,
-    MatDialogModule
+    MatDialogModule,
+    CdkDrag,
+    CdkDragHandle,
+    CdkDropList,
+    NgFor,
+    CdkDragPlaceholder,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent],

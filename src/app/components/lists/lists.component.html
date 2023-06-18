@@ -12,12 +12,13 @@
 
     <div class="lists">
 
-      <ul class="todo-list">
+      <ul class="todo-list example-list" cdkDropList (cdkDropListDropped)="drop($event)">
         <app-list
-          *ngFor="let list of pageSlice$ | async"
-          [list]="list"
-          [isEditing]="editingId === list.id"
-          (setEditingId)="setEditingId($event)"
+        *ngFor="let list of pageSlice$ | async"
+        [list]="list"
+        [isEditing]="editingId === list.id"
+        (setEditingId)="setEditingId($event)"
+        cdkDrag
         ></app-list>
       </ul>
 

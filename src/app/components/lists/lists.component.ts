@@ -4,8 +4,9 @@ import { Observable, combineLatest, map } from 'rxjs';
 import { ListService } from 'src/app/services/list-task-service.service';
 import { TaskList } from 'src/app/shared/models/list-task.model';
 import { FilterEnum } from 'src/app/shared/types/filter.enum';
-import { merge, of } from 'rxjs';
-import { startWith, switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-lists',
@@ -87,5 +88,11 @@ export class ListsComponent {
           return of(slicedData);
         })
       );
+  }
+
+  drop(event: CdkDragDrop<TaskList[]>) {
+    const lists = this.listService.Lists$.getValue();
+    moveItemInArray(lists, event.previousIndex, event.currentIndex);
+    this.listService.updateListsAndLocalStorage(lists);
   }
 }

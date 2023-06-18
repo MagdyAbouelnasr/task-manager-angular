@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, EMPTY, Observable, map, of } from 'rxjs';
 import { FilterEnum } from '../shared/types/filter.enum';
 import { TaskList } from '../shared/models/list-task.model';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,15 @@ export class ListService{
   filter$ = new BehaviorSubject<FilterEnum>(FilterEnum.all);
   queryList$ = new BehaviorSubject<TaskList[]>([]);
 
+  constructor(private localStorageService: LocalStorageService) {
+    // Initialize Lists$ with the data from local storage
+    const storedLists = this.localStorageService.getLists();
+    if (storedLists) {
+      this.Lists$.next(storedLists);
+    }
+  }
+
+
   addTodo(text: string): void{
     const newList: TaskList = {
       id: Math.random().toString(16),
@@ -21,7 +31,8 @@ export class ListService{
     }
 
     const updatedLists = [...this.Lists$.getValue() , newList]
-    this.Lists$.next(updatedLists)
+    this.updateListsAndLocalStorage(updatedLists);
+
   }
 
   // toggleAll(is_complete: boolean): void{
@@ -63,7 +74,8 @@ export class ListService{
      }
      return List
     })
-    this.Lists$.next(updatedLists)
+      this.updateListsAndLocalStorage(updatedLists);
+
   }
 
   changeTodoDescription(id: string, text: string): void{
@@ -76,13 +88,15 @@ export class ListService{
      }
      return List
     })
-    this.Lists$.next(updatedLists)
+    this.updateListsAndLocalStorage(updatedLists);
+
   }
 
   removeTodo(id: string): void{
       const updatedLists = this.Lists$.getValue().filter(List => List.id != id);
 
-      this.Lists$.next(updatedLists)
+      this.updateListsAndLocalStorage(updatedLists);
+
   }
 
   toggleTodo(id:string): void{
@@ -95,6 +109,13 @@ export class ListService{
       }
       return List
     })
-    this.Lists$.next(updatedLists)
+    this.updateListsAndLocalStorage(updatedLists);
+
+  }
+
+
+   updateListsAndLocalStorage(updatedLists: TaskList[]): void {
+    this.Lists$.next(updatedLists);
+    this.localStorageService.setLists(updatedLists);
   }
 }

@@ -3,5 +3,4 @@ export class TaskList{
   name!: string;
   is_complete!: boolean;
   description!: string;
-  order?: number;
 }

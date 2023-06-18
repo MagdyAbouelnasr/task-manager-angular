@@ -1,9 +1,8 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 import { AddEditPopupComponent } from '../add-edit-popup/add-edit-popup.component';
-import { BehaviorSubject, Observable, concat, debounceTime, distinctUntilChanged, fromEvent, map, switchMap } from 'rxjs';
+import { debounceTime, distinctUntilChanged, fromEvent, map, switchMap } from 'rxjs';
 import { ListService } from 'src/app/services/list-task-service.service';
-import { TaskList } from '../../models/list-task.model';
 
 @Component({
   selector: 'app-search-bar',

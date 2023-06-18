@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { NgbActiveModal, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
-import { TaskList } from '../../models/list-task.model';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ListService } from 'src/app/services/list-task-service.service';
 @Component({
   selector: 'app-add-edit-popup',
