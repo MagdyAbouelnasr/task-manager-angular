@@ -1,4 +1,5 @@
-
+##Running Project
+Run `npm i` to install packages. then run the following or `ng serve`
 
 ## Development server
 
