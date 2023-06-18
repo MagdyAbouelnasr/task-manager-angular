@@ -1,0 +1,37 @@
+<div class="page-main">
+
+  <div class="page-title">
+    <span>Tasks</span>
+  </div>
+
+  <app-search-bar></app-search-bar>
+
+  <section class="main" [ngClass]="{ hidden: noTodoClass$ | async }">
+
+    <app-lists-footer></app-lists-footer>
+
+    <div class="lists">
+
+      <ul class="todo-list">
+        <app-list
+          *ngFor="let list of pageSlice$ | async"
+          [list]="list"
+          [isEditing]="editingId === list.id"
+          (setEditingId)="setEditingId($event)"
+        ></app-list>
+      </ul>
+
+      <mat-paginator
+      #paginator
+      [length]="visibleListsLength"
+      [pageSize]="3"
+      [pageSizeOptions]="[3, 6, 9]"
+      (page)="onPageChange($event)"
+      aria-label="Select page"
+    ></mat-paginator>
+
+    </div>
+
+  </section>
+
+</div>

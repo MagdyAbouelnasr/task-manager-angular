@@ -1,0 +1,79 @@
+@import 'variables.scss';
+
+
+// Base styles
+body {
+  background-color: $light-blue;
+  color: $accent;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+// Responsive styles
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+}
+
+// Typography
+h1 {
+  color: $medium-blue;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+h2 {
+  color: $dark-blue;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+p {
+  margin-bottom: 10px;
+}
+
+// Buttons
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: $medium-blue;
+  color: $accent;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: $dark-blue;
+}
+
+// Forms
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid $accent;
+  border-radius: 4px;
+  background-color: transparent;
+  color: $accent;
+}
+
+// Responsive forms
+@media screen and (max-width: 768px) {
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    width: 80%;
+  }
+}
+@import './components/header.scss';
+@import './components/page.scss'

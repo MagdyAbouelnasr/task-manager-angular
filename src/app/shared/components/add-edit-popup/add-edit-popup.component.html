@@ -1,0 +1,25 @@
+<div class="modal-header">
+	<h2 class="modal-title"><i class="fa fa-cog"></i><span>Add New Task</span></h2>
+	<button type="button" class="close" (click)="Cancel()"><span>&times;</span></button>
+</div>
+
+	<div class="modal-body">
+    <input
+    class="new-todo form-control"
+    placeholder="what needs to be done?"
+    autofocus
+    [value]="text"
+    (keyup)="changeText($event)"
+    (keyup.enter)="addTodo()"
+  />
+  <label class="text-danger" *ngIf="textBool">Please enter a valid Input</label>
+</div>
+
+	<div class="modal-footer">
+		<button type="submit" class="btn btn-sm btn-save" (click)="addTodo()">
+			<i class="fa fa-save"></i><span>Save</span>
+		</button>
+		<button type="button" class="btn btn-sm btn-cancel" (click)="Cancel()">
+			<i class="fa fa-close"></i><span>Cancel</span>
+		</button>
+	</div>

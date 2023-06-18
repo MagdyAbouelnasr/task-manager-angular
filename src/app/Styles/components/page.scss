@@ -1,0 +1,55 @@
+.page-inner {
+  padding-top: 0;
+  padding-bottom: 50px;
+  padding-left: 0;
+  padding-right: 0;
+  flex-grow: 1;
+  overflow: hidden;
+
+  .page-title {
+      padding: 20px 20px 20px 20px;
+
+      >span,>div {
+          font-size: 28px;
+          font-weight: 700;
+          color: $dark-blue;
+          padding: 0;
+          margin: 0;
+      }
+  }
+
+  .page-main {
+      padding: 0 20px 20px 20px;
+      min-height: 500px;
+  }
+}
+
+[dir="ltr"] {
+  .page-inner {
+      .page-title {
+          animation: fadeInLeft 1s;
+          >Button{
+              float: right !important;
+          }
+      }
+
+      .page-main {
+          animation: fadeInLeft 1s;
+      }
+  }
+}
+
+[dir="rtl"] {
+  .page-inner {
+      .page-title {
+          animation: fadeInRight 1s;
+          >Button{
+              float: left !important;
+          }
+      }
+
+      .page-main {
+          animation: fadeInRight 1s;
+      }
+  }
+}

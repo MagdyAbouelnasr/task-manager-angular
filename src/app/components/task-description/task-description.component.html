@@ -1,0 +1,20 @@
+
+<ng-template #content let-offcanvas>
+	<div class="offcanvas-header">
+		<h4 class="offcanvas-title">{{taskName}} Description</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
+	</div>
+	<div class="offcanvas-body">
+    <mat-form-field class="example-full-width">
+      <mat-label>Leave Task description</mat-label>
+      <textarea matInput [(ngModel)]="description" placeholder="Ex. Follow following steps..." required>{{description}}</textarea>
+    </mat-form-field>
+		<div class="text-end">
+			<button type="button" class="btn btn-outline-success me-2" (click)="offcanvas.close('Save click')">Save</button>
+			<button type="button" class="btn btn-outline-danger" (click)="offcanvas.close('Close click')">Close</button>
+		</div>
+	</div>
+</ng-template>
+
+<button class="description" [title]="'Description'" (click)="open(content)"><mat-icon>chrome_reader_mode</mat-icon></button>
+

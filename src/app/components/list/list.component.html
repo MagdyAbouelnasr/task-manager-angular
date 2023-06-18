@@ -1,0 +1,26 @@
+<li [ngClass]="{ editing: isEditingProps }">
+  <div class="view">
+    <input
+      type="checkbox"
+      class="toggle checkbox-round"
+      [checked]="listProps.is_complete"
+      (change)="toggleTodo()"
+      [title]="listProps.is_complete ? 'Uncheck' : 'Check'"
+    />
+    <label class="label" (click)="setTodoInEditMode()">{{ listProps.name }}</label>
+    <app-task-description [taskName]="listProps.name" [taskId]="listProps.id" [description]="listProps.description"></app-task-description>
+    <button class="destroy" [title]="'Delete'"  (click)="openDialog()"><mat-icon>delete_forever</mat-icon></button>
+  </div>
+  <ng-container *ngIf="isEditingProps">
+    <input
+      class="edit"
+      #textInput
+      [value]="editingText"
+      (keyup)="changeText($event)"
+      (keyup.enter)="changeTodo()"
+      (blur)="abortChangeTodo()"
+      (keydown.escape)="abortChangeTodo()"
+    />
+  </ng-container>
+
+</li>
